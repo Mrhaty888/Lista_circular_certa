@@ -78,6 +78,7 @@ void remover_inicio(indicador *i) {
         free(aux);
         i->inicio = NULL;
         i->fim = NULL;
+        //indicador volta ao estado inicial.
     } else {
         printf("Removendo inicio . . . \n");
         i->inicio = aux->prox;
@@ -94,18 +95,23 @@ void remover_fim(indicador *i) {
     if (aux==NULL) {
       printf("Lista vazia! \n");
     } else if (aux->prox == aux) {
+        //Quando só tem 1 elemento.
         printf("Removendo fim . . . \n");
         free(aux);
         i->inicio = NULL;
         i->fim = NULL;
+        //indicador volta ao estado inicial.
     } else {
         printf("Removendo fim . . . \n");
         while (aux->prox != i->fim) {
             aux=aux->prox;
+            //roda até o penultimo elemento da lista,pois esse vira o novo fim.
         }
         free(i->fim);
         i->fim = aux;
+        //o fim do indicador aponta para o novo fim
         aux->prox = i->inicio;
+        //o novo fim aponta pro início.
     }
 }
 
@@ -117,14 +123,17 @@ void atualizar_valor(indicador *i, float valor, float valor_alterado) {
         printf("Lista vazia! \n");
     }
     else {
+        //como a condição precisa ser testada se tiver pelo menos 1 elemento, usamos do-while.
         do {
             if (aux->info == valor) {
                 aux->info = valor_alterado;
                 achado = 1;
+                //o valor do nó encontrado é trocado pelo valor novo e achado vira 1, indicando que foi achado.
                 printf("Valor encontrado e editado. \n");
                 break;
             }
             aux = aux->prox;
+            //vai passando de nó em nó até voltar ao início.
             }while (aux != i->inicio);
         }
         if (achado == 0) {
@@ -147,6 +156,7 @@ void destruir_lista(indicador *i) {
         free(aux1);
         i->inicio = NULL;
         i->fim = NULL;
+        //indicador volta ao estado inicial.
         printf("Lista destruida.");
     }
 }
