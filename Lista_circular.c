@@ -8,7 +8,7 @@ typedef struct no{
 }no;
 
 typedef struct{
-    no* inicio;
+    no *inicio;
     no *fim;
 } indicador;
 
@@ -29,12 +29,12 @@ void inserir_inicio(indicador *i, float valor) {
     novo = malloc(sizeof(no));
     novo->info = valor;
     novo->prox = NULL;
-    inicio_antigo = NULL;
     inicio_antigo = i->inicio;
     //inicio_antigo armazena o antigo inicio da lista.
     if (i->inicio == NULL) {
         i->inicio = novo;
         i->fim = novo;
+        novo->prox = novo;
     }
     else {
         novo->prox = inicio_antigo;
@@ -42,7 +42,7 @@ void inserir_inicio(indicador *i, float valor) {
         i->inicio = novo;
         //o indicador aponta o inicio para o novo.
     }
-    i->fim->prox = novo;
+    i->fim->prox = i->inicio;
     //o indicador aponta o ponteiro prox de onde fim aponta para o novo, que é o novo inicio.
 }
 
@@ -55,6 +55,7 @@ void inserir_fim(indicador *i, float valor) {
     if (i->inicio == NULL) {
         i->inicio = novo;
         i->fim = novo;
+        novo->prox = novo;
     }
     else {
         fim_antigo->prox = novo;
@@ -137,7 +138,7 @@ void atualizar_valor(indicador *i, float valor, float valor_alterado) {
             }while (aux != i->inicio);
         }
         if (achado == 0) {
-            printf("Valor não encontrado!");
+            printf("Valor inexistente! \n");
         }
     }
 
@@ -168,7 +169,7 @@ void exibir_lista(indicador *i) {
         printf("Nada para exibir! \n");
     } else {
         do {
-            printf("-> %.2f -",aux->info);
+            printf("-> %.2f --",aux->info);
             aux = aux->prox;
         } while (aux != i->inicio);
     }
