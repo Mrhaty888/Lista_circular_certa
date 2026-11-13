@@ -205,7 +205,7 @@ void main() {
                 scanf("%f", &valor);
                 inserir_inicio(lista, valor);
                 exibir_lista(lista);
-                printf("Valor inserido com sucesso!\n");
+                printf("\nValor inserido com sucesso!\n");
                 break;
 
             case 2:
